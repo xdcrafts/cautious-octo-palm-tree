@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+                      http://www.springframework.org/schema/aop     http://www.springframework.org/schema/aop/spring-aop.xsd
+                      http://www.springframework.org/schema/tx      http://www.springframework.org/schema/tx/spring-tx.xsd"
+       default-autowire="byName">
+
+    <aop:config>
+        <aop:pointcut id="restRepositoryTx"
+                      expression="execution(* org.springframework.data.rest.webmvc.RepositoryEntityController.*(..))" />
+        <aop:advisor id="managerTx" advice-ref="txAdvice" pointcut-ref="restRepositoryTx" order="20" />
+    </aop:config>
+
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <tx:method name="postCollectionResource*" propagation="REQUIRES_NEW" rollback-for="Exception" />
+            <tx:method name="putItemResource*" propagation="REQUIRES_NEW" rollback-for="Exception" />
+            <tx:method name="patchItemResource*" propagation="REQUIRES_NEW" rollback-for="Exception" />
+            <tx:method name="deleteItemResource*" propagation="REQUIRES_NEW" rollback-for="Exception" />
+            <tx:method name="createPropertyReference*" propagation="REQUIRES_NEW" rollback-for="Exception" />
+        </tx:attributes>
+    </tx:advice>
+
+</beans>

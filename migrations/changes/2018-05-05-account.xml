@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="vdubs" id="2018-05-05-account">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="account"/>
+            </not>
+        </preConditions>
+        <createTable tableName="account">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true" primaryKeyName="pk_account"/>
+            </column>
+            <column name="email" type="nvarchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="nvarchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nickname" type="nvarchar"/>
+            <column name="first_name" type="nvarchar"/>
+            <column name="last_name" type="nvarchar"/>
+            <column name="about_me" type="clob"/>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ext" type="clob"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
