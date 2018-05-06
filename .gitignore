@@ -32,6 +32,9 @@ hs_err_pid*
 # VS Code
 .vscode
 
-# Application fpecific
+# Application specific
 *.pid
 *.port
+
+# Docker specific
+.data
