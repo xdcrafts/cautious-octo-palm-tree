@@ -7,6 +7,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -17,8 +20,12 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @Email
+    @NotEmpty
     public String email;
 
+    @NotEmpty
+    @Size(min = 5)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonDeserialize(using = BCryptPasswordDeserializer.class)
     public String password;
