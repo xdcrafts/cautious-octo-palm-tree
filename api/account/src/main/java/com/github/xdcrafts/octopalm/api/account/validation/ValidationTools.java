@@ -19,7 +19,7 @@ public class ValidationTools {
             }
             @Override
             public void validate(Object target, Errors errors) {
-                smartValidator.validate(target, errors, groups);
+                smartValidator.validate(target, errors, (Object[]) groups);
             }
         };
     }

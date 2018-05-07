@@ -45,6 +45,7 @@
     <modules>
         <module>application</module>
         <module>api</module>
+        <module>libs</module>
     </modules>
 
     <parent>
